@@ -20,7 +20,7 @@ const Record = (props) => {
       }
     >
       <div className={s.recordNameWrapper}>
-        <div className={s.recordName}>{props.record.name}</div>
+        <div>{props.record.name}</div>
       </div>
 
       <div className={s.currentTime}>{timer}</div>

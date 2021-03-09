@@ -1,5 +1,6 @@
 const ADD_RECORD = "ADD_RECORD";
 const REMOVE_RECORD = "REMOVE_RECORD";
+const SET_RECORDS = "SET_RECORDS";
 const TOGGLE_PAUSE_RECORD = "TOGGLE_PAUSE_RECORD";
 const UPDATE_RECORD_TIME = "UPDATE_RECORD_TIME";
 const UPDATE_RECORD_TIME_START = "UPDATE_RECORD_TIME_START";
@@ -12,7 +13,7 @@ const recordsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_RECORD:
       const record = {
-        id: state.records.length + 1,
+        id: action.id,
         name: action.name || action.time,
         time: action.time,
         timeStart: action.time,
@@ -26,6 +27,12 @@ const recordsReducer = (state = initialState, action) => {
         records: state.records.filter(
           (record) => action.recordId !== record.id
         ),
+      };
+
+    case SET_RECORDS:
+      return {
+        ...state,
+        records: action.records,
       };
 
     case TOGGLE_PAUSE_RECORD:
@@ -67,9 +74,11 @@ const recordsReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const addRecord = (name, time) => {
+
+export const addRecord = (id, name, time) => {
   return {
     type: ADD_RECORD,
+    id,
     name,
     time,
   };
@@ -87,6 +96,13 @@ export const togglePauseRecord = (recordId, togglePause) => {
     type: TOGGLE_PAUSE_RECORD,
     recordId,
     togglePause,
+  };
+};
+
+export const setRecords = (records) => {
+  return {
+    type: SET_RECORDS,
+    records,
   };
 };
 

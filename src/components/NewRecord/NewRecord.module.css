@@ -46,3 +46,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media (max-width: 560px) {
+  .inputWrapper {
+    padding: 0 10px;
+  }
+  .mainInput {
+    padding: 11px 20px;
+  }
+  .submit {
+    right: 15px;
+  }
+}

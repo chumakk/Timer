@@ -1,10 +1,9 @@
 import React from "react";
-import s from "./Records.module.css";
 import Record from "./Record/Record";
 
 const Records = (props) => {
   return (
-    <div className={s.container}>
+    <div>
       {props.records.map((record) => (
         <Record
           key={record.id}

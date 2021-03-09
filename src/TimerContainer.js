@@ -5,6 +5,7 @@ import {
   addRecord,
   removeRecord,
   togglePauseRecord,
+  setRecords,
   updateRecordTime,
   updateRecordTimeStart,
 } from "./redux/recordsReducer";
@@ -17,19 +18,26 @@ class TimerContainer extends React.Component {
         if (!record.paused) {
           this.props.updateRecordTime(record.id, moment().format());
         } else {
+          const diff = moment(record.time).diff(
+            moment(record.timeStart),
+            "seconds"
+          );
+          const currentTime = moment();
+
+          this.props.updateRecordTime(record.id, currentTime.format());
           this.props.updateRecordTimeStart(
             record.id,
-            moment(record.timeStart).add(1000, "milliseconds").format()
+            currentTime.subtract(diff, "seconds").format()
           );
-          this.props.updateRecordTime(record.id, moment().format());
         }
       });
     }, 1000);
   }
-  componentDidUpdate() {}
+
   componentWillUnmount() {
     clearInterval(this.timer);
   }
+
   render() {
     return <Timer {...this.props} />;
   }
@@ -43,12 +51,9 @@ const mapDispatchToProps = {
   addRecord,
   removeRecord,
   togglePauseRecord,
+  setRecords,
   updateRecordTime,
   updateRecordTimeStart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerContainer);
-
-// const time = moment().format();
-// const timeUTC = moment.utc().format();
-// const timetUTCParse = moment.parseZone("2021-03-08T1:26:57Z").format();

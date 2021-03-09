@@ -11,11 +11,17 @@ const NewRecord = (props) => {
   };
 
   const onSubmit = () => {
-    const currentTime = moment().format();
-    props.addRecord(inputedValue, currentTime);
+    const currentTime = moment();
+    props.addRecord(currentTime.valueOf(),inputedValue, currentTime.format("YYYY-MM-DD HH:mm:ss"));
     setValue("");
   };
-  
+
+  const onEnter = (e) => {
+    if (e.key === "Enter") {
+      onSubmit();
+    }
+  };
+
   return (
     <div className={s.inputWrapper}>
       <div>
@@ -23,6 +29,7 @@ const NewRecord = (props) => {
           className={s.mainInput}
           value={inputedValue}
           onChange={onInput}
+          onKeyDown={onEnter}
           placeholder="Enter tracker name"
         />
       </div>

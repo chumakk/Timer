@@ -12,11 +12,11 @@
   color: #000000;
 }
 
-.record:first-child{
+.record:first-child {
   border-top: 1px solid #d6d6d6;
 }
 
-.record:last-child{
+.record:last-child {
   border-bottom: 1px solid #d6d6d6;
 }
 
@@ -25,20 +25,13 @@
 }
 
 .launchedRecord {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.025em;
   color: #3faf6c;
-
   background: #fdfdf6;
 }
-.recordNameWrapper{
+.recordNameWrapper {
   flex: 1 1 auto;
+  max-height: 41px;
   overflow: hidden;
-}
-
-.recordName {
-  /* overflow: auto; */
 }
 
 .currentTime {
@@ -68,4 +61,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media (max-width: 560px) {
+  .record {
+    font-size: 13px;
+    padding: 18px 2px 18px 12px;
+  }
+  .recordButtonWrapper {
+    padding: 0 9px;
+  }
+  .recordNameWrapper {
+    max-height: 47px;
+  }
 }
