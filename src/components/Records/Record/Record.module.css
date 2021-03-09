@@ -1,0 +1,71 @@
+.record {
+  display: flex;
+  padding: 16px 2px 17px 20px;
+
+  align-items: center;
+
+  font-family: "PT Sans", sans-serif;
+  line-height: 1.2;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  color: #000000;
+}
+
+.record:first-child{
+  border-top: 1px solid #d6d6d6;
+}
+
+.record:last-child{
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.record + .record {
+  border-top: 1px solid #d6d6d6;
+}
+
+.launchedRecord {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  color: #3faf6c;
+
+  background: #fdfdf6;
+}
+.recordNameWrapper{
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.recordName {
+  /* overflow: auto; */
+}
+
+.currentTime {
+  padding-right: 21px;
+}
+
+.recordButtonWrapper {
+  padding: 0 7px;
+}
+
+.recordButton {
+  position: relative;
+  width: 25px;
+  height: 25px;
+
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.recordButton:hover {
+  background-color: #eeeeee;
+}
+.recordButton svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

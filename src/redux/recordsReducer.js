@@ -1,27 +1,23 @@
 const ADD_RECORD = "ADD_RECORD";
 const REMOVE_RECORD = "REMOVE_RECORD";
 const TOGGLE_PAUSE_RECORD = "TOGGLE_PAUSE_RECORD";
+const UPDATE_RECORD_TIME = "UPDATE_RECORD_TIME";
+const UPDATE_RECORD_TIME_START = "UPDATE_RECORD_TIME_START";
 
 const initialState = {
-  records: [
-    {
-      id: "",
-      name: "",
-      time: "",
-      paused: false,
-    },
-  ],
+  records: [],
 };
 
 const recordsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_RECORD:
       const record = {
-        id: state.records.length+1,
-        name:  action.name,
+        id: state.records.length + 1,
+        name: action.name || action.time,
         time: action.time,
+        timeStart: action.time,
         paused: false,
-      }
+      };
       return { ...state, records: [...state.records, record] };
 
     case REMOVE_RECORD:
@@ -35,22 +31,47 @@ const recordsReducer = (state = initialState, action) => {
     case TOGGLE_PAUSE_RECORD:
       return {
         ...state,
-        records: state.records.map((record) =>
-          record.id === action.recordId
-            ? (record.paused = action.togglePause)
-            : record
-        ),
+        records: state.records.map((record) => {
+          if (record.id === action.recordId) {
+            return { ...record, paused: action.togglePause };
+          } else {
+            return record;
+          }
+        }),
       };
 
+    case UPDATE_RECORD_TIME:
+      return {
+        ...state,
+        records: state.records.map((record) => {
+          if (record.id === action.recordId) {
+            return { ...record, time: action.time };
+          } else {
+            return record;
+          }
+        }),
+      };
+
+    case UPDATE_RECORD_TIME_START:
+      return {
+        ...state,
+        records: state.records.map((record) => {
+          if (record.id === action.recordId) {
+            return { ...record, timeStart: action.time };
+          } else {
+            return record;
+          }
+        }),
+      };
     default:
       return state;
   }
 };
-export const addRecord = (name,time) => {
+export const addRecord = (name, time) => {
   return {
     type: ADD_RECORD,
     name,
-    time
+    time,
   };
 };
 
@@ -66,6 +87,22 @@ export const togglePauseRecord = (recordId, togglePause) => {
     type: TOGGLE_PAUSE_RECORD,
     recordId,
     togglePause,
+  };
+};
+
+export const updateRecordTime = (recordId, time) => {
+  return {
+    type: UPDATE_RECORD_TIME,
+    recordId,
+    time,
+  };
+};
+
+export const updateRecordTimeStart = (recordId, time) => {
+  return {
+    type: UPDATE_RECORD_TIME_START,
+    recordId,
+    time,
   };
 };
 

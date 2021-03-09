@@ -1,13 +1,20 @@
 import React from "react";
-import { connect } from "react-redux";
-import moment from "moment";
+import NewRecord from "./components/NewRecord/NewRecord";
+import Records from "./components/Records/Records";
+import s from "./Timer.module.css";
 
-function Timer() {
-  return <div></div>;
-}
+const Timer = (props) => {
+  return (
+    <div className={s.container}>
+      <h1 className={s.title}>tracker</h1>
+      <NewRecord addRecord={props.addRecord} />
+      <Records
+        records={props.records}
+        removeRecord={props.removeRecord}
+        togglePauseRecord={props.togglePauseRecord}
+      />
+    </div>
+  );
+};
 
-const mapStateToProps = (state) => {};
-const mapDispatchToProps = (dispatch) => {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Timer);
-
+export default Timer;

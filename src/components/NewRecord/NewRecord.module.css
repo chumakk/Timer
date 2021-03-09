@@ -1,0 +1,48 @@
+.inputWrapper {
+  position: relative;
+  margin-bottom: 24px;
+}
+.mainInput {
+  width: 100%;
+  padding: 12px 20px;
+
+  border: 1px solid #b8b8b8;
+  border-radius: 23px;
+
+  color: #b8b8b8;
+  font-family: "PT Sans", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+.mainInput:focus {
+  border: 1px solid #7a7a7a;
+  border-radius: 23px;
+
+  color: #7a7a7a;
+  outline: none;
+}
+
+.submit {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+
+  background-color: #3faf6c;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+.submit:hover {
+  background-color: #338f58;
+}
+.submit svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

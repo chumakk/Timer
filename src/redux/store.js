@@ -5,6 +5,9 @@ const redusers = combineReducers({
   records: recordsReducer,
 });
 
-const store = createStore(redusers);
+const store = createStore(
+  redusers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;

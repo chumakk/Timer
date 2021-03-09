@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Timer from "./Timer";
+import TimerContainer from "./TimerContainer";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Timer />
+    <TimerContainer />
   </Provider>,
   document.getElementById("root")
 );
